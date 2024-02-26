@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>CERN ROOT 按照 | Gridea</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://isesword.github.io/favicon.ico?v=1708923289108">
+<link rel="stylesheet" href="https://isesword.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="# 安装 ROOT 软件
+这里重新说一下我安装方法，之前的也可以，看个人需求了。
+首先，从ROOT 官方网站下载预编译软件包。
+其次但是很重要的是使用 windows 的powershell（这是一个终端，目前 win11/10 都支持），..." />
+    <meta name="keywords" content="root" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://isesword.github.io">
+        <img src="https://isesword.github.io/images/avatar.png?v=1708923289108" class="site-logo">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="/geant4" class="site-nav">
+            Geant4
+          </a>
+        
+      
+        
+          <a href="/root" class="site-nav">
+            CERN ROOT
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://isesword.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">CERN ROOT 按照</h2>
+            <div class="post-date">2024-01-14</div>
+            
+            <div class="post-content" v-pre>
+              <p><img src="https://isesword.github.io/post-images/1705247870677.jpg" alt="" loading="lazy"># 安装 ROOT 软件</p>
+<p>这里重新说一下我安装方法，之前的也可以，看个人需求了。</p>
+<p>首先，从<a href="https://root.cern/download/" title="ROOT 官方网站">ROOT 官方网站</a>下载预编译软件包。</p>
+<p>其次但是很重要的是使用 windows 的<code>powershell</code>（这是一个终端，目前 win11/10 都支持），ubuntu 我使用的是<code>zsh</code>。</p>
+<h2 id="ubuntu-配置">ubuntu 配置</h2>
+<h3 id="安装-root-软件">安装 ROOT 软件</h3>
+<figure data-type="image" tabindex="1"><img src="https://files.mdnice.com/user/14846/acdd5045-304f-44cb-af34-2e52452f3581.png" alt="" loading="lazy"></figure>
+<ol>
+<li>
+<p>在 Windows 上安装 WSL 并配置 Ubuntu 子系统（详细配置教程可自行搜索）。</p>
+</li>
+<li>
+<p>打开 WSL 终端，创建并进入一个新的文件夹：</p>
+</li>
+</ol>
+<pre><code class="language-bash">mkdir ROOT &amp;&amp; cd ROOT
+</code></pre>
+<ol start="3">
+<li>下载并解压 ROOT 软件包：</li>
+</ol>
+<p>复制最新的对应 linux 系统的 ROOT 链接（这里我的是 ubuntu）</p>
+<figure data-type="image" tabindex="2"><img src="https://files.mdnice.com/user/14846/ae4fcaab-6f4d-4dd0-920e-b929be6382c2.png" alt="" loading="lazy"></figure>
+<pre><code class="language-bash"># wget https://root.cern/download/root_v6.30.01.Linux-ubuntu22-x86_64-gcc11.4.tar.gz
+wget 复制的链接
+# 解压
+tar -xzvf root_xxx.tar.gz
+</code></pre>
+<ol start="4">
+<li>将 ROOT 的环境变量写入<code>.bashrc</code>：</li>
+</ol>
+<pre><code class="language-bash"># 写入环境变量
+echo &quot;source /path/to/ROOT/root/bin/thisroot.sh&quot; &gt;&gt; ~/.bashrc
+# 重新加载~/.bashrc文件
+source ~/.bashrc
+</code></pre>
+<h3 id="搭建-pyroot-环境">搭建 pyroot 环境</h3>
+<ol>
+<li>查看 pyroot 支持的 Python 版本：</li>
+</ol>
+<p>输出如下，可以看到刚刚好</p>
+<figure data-type="image" tabindex="3"><img src="https://files.mdnice.com/user/14846/1ed22911-eb32-449e-9ee8-e2400d96cd9c.png" alt="" loading="lazy"></figure>
+<pre><code class="language-bash">#`root-config --python3-version`是查询支持的版本
+# 3.10.12为输出
+➜  ~ root-config --python3-version
+3.10.12
+# python3 是运行python3，下面是会显示现在python3版本
+➜  ~ python3
+Python 3.10.12 (main, Nov 20 2023, 15:14:05) [GCC 11.4.0] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt;
+</code></pre>
+<ol start="2">
+<li>设置镜像源</li>
+</ol>
+<pre><code class="language-bash">pip3 config set global.index-url http://mirrors.aliyun.com/pypi/simple
+pip3 config set global.trusted-host mirrors.aliyun.com
+</code></pre>
+<ol start="3">
+<li>安装 Jupyter Lab 及相关库：</li>
+</ol>
+<pre><code class="language-bash">pip3 install jupyter jupyterlab notebook metakernel jupyterlab-language-pack-zh-CN jupyterlab-code-formatter black isort jupyter lab
+</code></pre>
+<ol start="4">
+<li>使用 VSCode 连接 WSL 的 Jupyter Lab，以获得代码提示功能。<br>
+这里就不过多赘述，自行搜索</li>
+</ol>
+<h2 id="windows-配置">windows 配置</h2>
+<h3 id="安装-root-软件-2">安装 ROOT 软件</h3>
+<ol>
+<li>
+<p>下载预编译文件<br>
+<img src="https://files.mdnice.com/user/14846/5dad4c16-e5e6-4f3b-8aa9-84adfe0ed5a0.png" alt="下载预编译文件" loading="lazy"></p>
+</li>
+<li>
+<p>解压文件</p>
+</li>
+</ol>
+<figure data-type="image" tabindex="4"><img src="https://files.mdnice.com/user/14846/a2ce1274-74fe-47b1-9c80-e5c4e6de6857.png" alt="解压文件" loading="lazy"></figure>
+<ol start="3">
+<li>把 bin 文件夹路径加入环境变量 path 中</li>
+</ol>
+<p>我的 bin 路径是，D:\ROOT\root_v6.30.02.win64.vc17\bin</p>
+<figure data-type="image" tabindex="5"><img src="https://files.mdnice.com/user/14846/e5a3dc45-9f1c-4fb5-9963-b130babc442d.png" alt="bin文件夹路径加入环境变量path" loading="lazy"></figure>
+<ol start="4">
+<li>设置 ROOT 的软件包的环境变量和路径</li>
+</ol>
+<figure data-type="image" tabindex="6"><img src="https://files.mdnice.com/user/14846/88d2cb16-fc8c-4a23-9b81-51bd4b897ba9.png" alt="多个脚本文件" loading="lazy"></figure>
+<p>可以看到有多个脚本文件，它们的作用都是一样的。以为我使用的是 powershell，这里就使用<code>thisroot.ps1</code>文件</p>
+<figure data-type="image" tabindex="7"><img src="https://files.mdnice.com/user/14846/add66639-7109-4eaa-a0bf-6d353f1dcee8.png" alt="" loading="lazy"></figure>
+<ul>
+<li>打开 powershell 输入<code>notepad $PROFILE</code>，然后会打开下面这样一个文件只需要加入<code>. &quot;path\to\thisroot.ps1&quot;</code>就可以，其它的不需要管，那是我的终端美化操作。</li>
+</ul>
+<figure data-type="image" tabindex="8"><img src="https://files.mdnice.com/user/14846/614e8918-7f32-4181-ab62-03284c4b9fd2.png" alt="" loading="lazy"></figure>
+<ul>
+<li>在 powershell 终端输入<code>. $PROFILE</code>重新加载脚本</li>
+</ul>
+<h3 id="pyroot-配置">pyroot 配置</h3>
+<p>经过测试<code>pyroot</code>在 win 上的 jupyter 支持不够好，只能在 python 解释器中使用，所以建议使用上面的 wsl 方法。</p>
+<ol>
+<li>查询适配 python 版本</li>
+</ol>
+<pre><code># powershell 终端运行root-config --python-version命令
+root-config --python-version
+# 下面是终端输出，代表支持python3.8.10版本
+ 3.8.10
+</code></pre>
+<ol start="2">
+<li>安装对应 python 版本</li>
+</ol>
+<p>可以直接安装 python 版本或者使用 conda 安装对应版本</p>
+<pre><code># conda 安装python=3.8命令
+conda create -n pyroot python=3.8
+</code></pre>
+<ol start="3">
+<li>测试</li>
+</ol>
+<p>下面这样情况代表成功。</p>
+<figure data-type="image" tabindex="9"><img src="https://files.mdnice.com/user/14846/9c796b52-873a-42e7-b4c8-d5cff9cd6928.png" alt="" loading="lazy"></figure>
+<ol start="4">
+<li>运行代码示例</li>
+</ol>
+<pre><code>from ROOT import (
+    TH1D,
+    TCanvas,
+    TApplication,
+)
+app = TApplication(&quot;myapp&quot;, 0, 0) # 这个代码不能少
+# 创建一个叫c1的画布，标题为Histograms Exmple，画布宽600，高900
+c1 = TCanvas(&quot;c1&quot;, &quot;Histograms Exmple&quot;, 800, 600)
+# 创建一个叫h1d1,标题为TH1D Exmple，把[-10,10]区间分为200个小区间的直方图
+h1d1 = TH1D(&quot;h1d1&quot;, &quot;TH1D Exmple&quot;, 200, -10, 10)
+# FillRandom 用于高斯分布、泊松分布等填充。
+h1d1.FillRandom(&quot;gaus&quot;, 10000)  # 使用gaus，并填充10000个数据
+
+h1d1.Draw()
+c1.Draw()
+
+app.Run() # 这个代码不能少
+</code></pre>
+<p>下面是代码运行结果<br>
+<img src="https://files.mdnice.com/user/14846/b723ddaf-574a-436d-a52a-23b0d7d88d7e.png" alt="运行结果" loading="lazy"></p>
+<h1 id="cmake-构建编译">cmake 构建编译</h1>
+<h2 id="终端运行代码">终端运行代码</h2>
+<p><code>windows推荐powershell，linux可以使用zsh或者原生终端</code></p>
+<p>首先运行下列代码:</p>
+<pre><code>// Create a ROOT canvas
+TCanvas *c1 = new TCanvas(&quot;c1&quot;, &quot;Canvas&quot;, 800, 600);
+
+// Create a histogram
+TH1D *h1 = new TH1D(&quot;h1&quot;, &quot;Random Numbers Histogram&quot;, 10, -5, 5);
+
+// Create a TRandom3 generator
+TRandom3 rndgen;
+
+// Fill the histogram with random numbers
+h1-&gt;FillRandom(&quot;gaus&quot;, 10000);
+
+// Draw the histogram
+h1-&gt;Draw();
+
+// Draw the canvas
+c1-&gt;Draw();
+</code></pre>
+<p>运行结果:</p>
+<figure data-type="image" tabindex="10"><img src="https://files.mdnice.com/user/14846/2baea465-8543-4d5a-af9b-5b7e58901465.png" alt="运行结果" loading="lazy"></figure>
+<h2 id="clion-编写代码与运行">Clion 编写代码与运行</h2>
+<h3 id="1-配置编译器">1. 配置编译器</h3>
+<ol>
+<li>配置工具链:<br>
+<code>设置 -&gt; 构建、执行、部署 -&gt; 工具链</code></li>
+</ol>
+<figure data-type="image" tabindex="11"><img src="https://files.mdnice.com/user/14846/b0318921-a864-4689-91fe-941ef62b3899.png" alt="配置工具链" loading="lazy"></figure>
+<ol start="2">
+<li>配置 cmake:<br>
+上面设置好工具链后，就可以设置 cmake 使用的工具链了。</li>
+</ol>
+<p>（这里我 wsl 子系统与 win 都设置好了，所有有两个工具链）</p>
+<figure data-type="image" tabindex="12"><img src="https://files.mdnice.com/user/14846/5043c48e-f649-4e02-a3cd-598ae479df6d.png" alt="cmake 设置" loading="lazy"></figure>
+<h3 id="2-便编写-cmakeliststxt-内容">2. 便编写 CMakeLists.txt 内容</h3>
+<pre><code>cmake_minimum_required(VERSION 3.16...3.21)
+project(analy-root-file)
+
+# 设置可执行文件的名称
+set(EXECUTABLE_NAME &quot;main&quot;)
+
+# 设置 C++ 标准
+set(CMAKE_CXX_STANDARD 17)
+
+# 设置引用的库路径已经通过 thisroot.ps1/sh 设置好了，如果没有设置，需要手动配置
+## 在 Linux 下设置 ROOT 路径
+#if(UNIX)
+#    set(ROOT_INCLUDE_DIRS &quot;/root/ROOT/root/include&quot;)
+#    set(CMAKE_PREFIX_PATH &quot;/root/ROOT/root&quot;)
+#endif()
+#
+## 在 Windows 下设置 ROOT 路径
+#if(WIN32)
+#    set(ROOT_INCLUDE_DIRS &quot;D:/ROOT/root_v6.30.02.win64.vc17/include&quot;)
+#    set(CMAKE_PREFIX_PATH &quot;D:/ROOT/root_v6.30.02.win64.vc17&quot;)
+#endif()
+
+# 查找 ROOT
+find_package(ROOT REQUIRED COMPONENTS RIO Tree Hist)
+
+#include_directories(${ROOT_INCLUDE_DIRS})
+
+
+# 添加可执行文件
+add_executable(${EXECUTABLE_NAME} main.cc)
+
+
+# 链接 ROOT 库
+target_link_libraries(${EXECUTABLE_NAME} PUBLIC
+        ROOT::RIO
+        ROOT::Tree
+        ROOT::Hist
+        ROOT::Core
+        ROOT::Gpad
+        ROOT::Graf3d
+        ROOT::Graf
+        ROOT::Hist
+        ROOT::Imt
+        ROOT::MathCore
+        ROOT::Matrix
+        ROOT::Net
+        ROOT::Physics
+        ROOT::Postscript
+        ROOT::RIO
+        ROOT::ROOTDataFrame
+        ROOT::ROOTVecOps
+        ROOT::Rint
+        ROOT::Thread
+        ROOT::TreePlayer
+        ROOT::Tree
+)
+
+# 并行处理，win不支持
+if(UNIX)
+    target_link_libraries(main PUBLIC ROOT::MultiProc)
+endif()
+</code></pre>
+<h3 id="编写运行代码">编写运行代码</h3>
+<p>编写代码:</p>
+<pre><code>#include &lt;TCanvas.h&gt;
+#include &lt;TH1.h&gt;
+#include &lt;TRandom3.h&gt;
+#include &lt;TSystem.h&gt;
+#include &lt;iostream&gt;
+#include &lt;TApplication.h&gt;
+
+using namespace std;
+
+int main() {
+    TApplication app(&quot;myapp&quot;, 0, 0);
+
+    // Create a ROOT canvas
+    TCanvas *c1 = new TCanvas(&quot;c1&quot;, &quot;Canvas&quot;, 800, 600);
+
+    // Create a histogram
+    TH1D *h1 = new TH1D(&quot;h1&quot;, &quot;Random Numbers Histogram&quot;, 10, -5, 5);
+
+    // Create a TRandom3 generator
+    TRandom3 rndgen;
+
+    // Fill the histogram with random numbers
+    h1-&gt;FillRandom(&quot;gaus&quot;, 10000);
+
+    // Draw the histogram
+    h1-&gt;Draw();
+
+    // Draw the canvas
+    c1-&gt;Draw();
+
+    app.Run();
+
+    // Clean up
+    delete c1;
+    delete h1;
+
+    cout &lt;&lt; &quot;Hello, World!&quot; &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+<p>运行代码:</p>
+<figure data-type="image" tabindex="13"><img src="https://files.mdnice.com/user/14846/ad8218bb-1da3-43ba-af93-9cc045414a78.png" alt="运行结果" loading="lazy"></figure>
+<h3 id="注意事项">注意事项</h3>
+<p>确保以下 3 行代码存在，以确保图形能够正确显示：</p>
+<pre><code>#include &lt;TApplication.h&gt;
+TApplication app(&quot;myapp&quot;, 0, 0);
+app.Run();
+</code></pre>
+<p>如果没有上面这 3 行代码，当使用 Clion 运行时会发现，仅仅会输出<code>hello world!</code>，但是就是没有绘制的图形。</p>
+<h2 id="总结">总结</h2>
+<p>以上就是我目前使用的整个软件的搭建方法。</p>
+<p>如果是想用 C++写代码，推荐使用 cmake 的方法，这样有代码提示，查看源码的优点。如果使用 pyroot，不建议使用 ROOT 的官方绑定库，推荐使用 uproot 库，结合 numba 库进行加速，使用 jupyter lar 进行编辑，非常的方便。</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://isesword.github.io/tag/GbncHt-KT/" class="tag">
+                    root
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://isesword.github.io/post/hello-gridea/">
+                  <h3 class="post-title">
+                    Hello Gridea
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+
+  </body>
+</html>
